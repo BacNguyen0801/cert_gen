@@ -1,0 +1,1 @@
+python -m PyInstaller --onefile cert_gen.py

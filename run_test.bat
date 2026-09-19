@@ -1,4 +1,3 @@
-```bat
 @echo off
 setlocal EnableExtensions EnableDelayedExpansion
 
@@ -8,8 +7,7 @@ REM ============================================================
 
 cd /d "%~dp0"
 
-set "PYTHON=python"
-set "SCRIPT=cert_gen.py"
+set "SCRIPT=dist/cert_gen.exe"
 set "CONFIG=input.json"
 
 REM OpenSSL path
@@ -25,23 +23,7 @@ echo ============================================================
 echo.
 
 REM ============================================================
-REM 1. Check Python
-REM ============================================================
-
-echo [CHECK] Python...
-
-%PYTHON% --version >nul 2>&1
-if errorlevel 1 (
-    echo [ERROR] Python is not available.
-    pause
-    exit /b 1
-)
-
-%PYTHON% --version
-echo.
-
-REM ============================================================
-REM 2. Check cert_gen.py
+REM 1. Check cert_gen.exe
 REM ============================================================
 
 if not exist "%SCRIPT%" (
@@ -51,7 +33,7 @@ if not exist "%SCRIPT%" (
 )
 
 REM ============================================================
-REM 3. Check input.json
+REM 2. Check input.json
 REM ============================================================
 
 if not exist "%CONFIG%" (
@@ -61,7 +43,7 @@ if not exist "%CONFIG%" (
 )
 
 REM ============================================================
-REM 4. Check OpenSSL
+REM 3. Check OpenSSL
 REM ============================================================
 
 echo [CHECK] OpenSSL...
@@ -86,7 +68,7 @@ if errorlevel 1 (
 echo.
 
 REM ============================================================
-REM 5. Clean previous test output
+REM 4. Clean previous test output
 REM ============================================================
 
 echo [CLEAN] Removing previous test output...
@@ -100,7 +82,7 @@ mkdir "%TEST_ROOT%"
 echo.
 
 REM ============================================================
-REM 6. CASE 1 - GENERATE
+REM 5. CASE 1 - GENERATE
 REM ============================================================
 
 echo ============================================================
@@ -110,7 +92,7 @@ echo.
 
 echo [RUN] Generate Root + IMI + Device...
 
-%PYTHON% "%SCRIPT%" generate ^
+"%SCRIPT%" generate ^
     --config "%CONFIG%" ^
     --output "%TEST_ROOT%\generate" ^
     --openssl "%OPENSSL%"
@@ -140,7 +122,7 @@ if not exist "%TEST_ROOT%\generate\device\device.crt" goto FILE_ERROR
 if not exist "%TEST_ROOT%\generate\device\device.key" goto FILE_ERROR
 
 REM ============================================================
-REM 7. CASE 2 - REPLACE ALL
+REM 6. CASE 2 - REPLACE ALL
 REM ============================================================
 
 echo ============================================================
@@ -151,7 +133,7 @@ echo.
 echo [RUN] Replace Root + IMI + Device...
 echo.
 
-%PYTHON% "%SCRIPT%" replace-all ^
+"%SCRIPT%" replace-all ^
     --config "%CONFIG%" ^
     --output "%TEST_ROOT%\replace-all" ^
     --openssl "%OPENSSL%" ^
@@ -170,7 +152,7 @@ echo [PASSED] CASE 2 - REPLACE-ALL
 echo.
 
 REM ============================================================
-REM 8. CASE 3 - REPLACE IMI + DEVICE
+REM 7. CASE 3 - REPLACE IMI + DEVICE
 REM ============================================================
 
 echo ============================================================
@@ -181,7 +163,7 @@ echo.
 echo [RUN] Replace IMI + Device...
 echo.
 
-%PYTHON% "%SCRIPT%" replace-imi-device ^
+"%SCRIPT%" replace-imi-device ^
     --config "%CONFIG%" ^
     --output "%TEST_ROOT%\replace-imi-device" ^
     --openssl "%OPENSSL%" ^
@@ -200,7 +182,7 @@ echo [PASSED] CASE 3 - REPLACE-IMI-DEVICE
 echo.
 
 REM ============================================================
-REM 9. CASE 4 - REPLACE DEVICE
+REM 8. CASE 4 - REPLACE DEVICE
 REM ============================================================
 
 echo ============================================================
@@ -211,7 +193,7 @@ echo.
 echo [RUN] Replace Device only...
 echo.
 
-%PYTHON% "%SCRIPT%" replace-device ^
+"%SCRIPT%" replace-device ^
     --config "%CONFIG%" ^
     --output "%TEST_ROOT%\replace-device" ^
     --openssl "%OPENSSL%" ^
@@ -232,7 +214,7 @@ echo [PASSED] CASE 4 - REPLACE-DEVICE
 echo.
 
 REM ============================================================
-REM 10. TEST RESULT
+REM 9. TEST RESULT
 REM ============================================================
 
 echo.
@@ -304,4 +286,3 @@ echo %TEST_ROOT%
 echo.
 pause
 exit /b 1
-```
