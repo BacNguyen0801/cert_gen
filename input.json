@@ -1,0 +1,58 @@
+{
+    "openssl": {
+        "path": "C:/Program Files/OpenSSL-Win64/bin/openssl.exe"
+    },
+
+    "root": {
+        "subject": {
+            "C": "VN",
+            "O": "MyCompany",
+            "OU": "PKI",
+            "CN": "MyCompany Root CA"
+        },
+        "validity_days": 3650
+    },
+
+    "imi": {
+        "subject": {
+            "C": "VN",
+            "O": "MyCompany",
+            "OU": "PKI",
+            "CN": "MyCompany IMI CA"
+        },
+        "validity_days": 3650
+    },
+
+    "device": {
+        "subject": {
+            "C": "VN",
+            "O": "MyCompany",
+            "OU": "Device",
+            "CN": "DeviceId"
+        },
+        "validity_days": 3650,
+
+        "key_usage": [
+            "digitalSignature"
+        ],
+
+        "extended_key_usage": [
+            "clientAuth"
+        ],
+
+        "specific_extensions": [
+            {
+                "oid": "1.2.3.4.1.1",
+                "name": "DeviceId",
+                "type": "UTF8String",
+                "value": "DEVICE-000001"
+            },
+            {
+                "oid": "1.2.3.4.1.2",
+                "name": "VIN",
+                "type": "UTF8String",
+                "value": "VIN123456789"
+            }
+        ]
+    }
+}

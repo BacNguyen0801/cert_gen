@@ -1,0 +1,78 @@
+
+C:\ws\github\cybersecurity\ecdsa_cert>```bat
+
+============================================================
+       ECDSA P-256 Certificate Generator Test
+============================================================
+
+[CHECK] Python...
+Python 3.14.6
+
+[CHECK] OpenSSL...
+OpenSSL 4.0.2 25 Aug 2026 (Library: OpenSSL 4.0.2 25 Aug 2026)
+
+[CLEAN] Removing previous test output...
+
+============================================================
+CASE 1: GENERATE
+============================================================
+
+[RUN] Generate Root + IMI + Device...
+[OPENSSL] OpenSSL 4.0.2 25 Aug 2026 (Library: OpenSSL 4.0.2 25 Aug 2026)
+
+========================================
+ GENERATE NEW CERTIFICATE SET
+========================================
+
+[CMD]
+"C:\Program Files\OpenSSL-Win64\bin\openssl.exe" ecparam -name prime256v1 -genkey -noout -out test_output\generate\root\root.key
+
+[CMD]
+"C:\Program Files\OpenSSL-Win64\bin\openssl.exe" req -new -x509 -sha256 -key test_output\generate\root\root.key -out test_output\generate\root\root.crt -days 3650 -subj "{'C': 'VN', 'O': 'MyCompany', 'OU': 'PKI', 'CN': 'MyCompany Root CA'}" -addext basicConstraints=critical,CA:true,pathlen:1 -addext keyUsage=critical,keyCertSign,cRLSign -addext subjectKeyIdentifier=hash
+
+[OPENSSL ERROR]
+req: subject name is expected to be in the format /type0=value0/type1=value1/type2=... where characters may be escaped by \. This name is not in that format: '{'C': 'VN', 'O': 'MyCompany', 'OU': 'PKI', 'CN': 'MyCompany Root CA'}'
+
+
+[FAILED] CASE 1 - GENERATE
+Press any key to continue . . . 
+Terminate batch job (Y/N)? 
+
+C:\ws\github\cybersecurity\ecdsa_cert>```bat
+
+============================================================
+       ECDSA P-256 Certificate Generator Test
+============================================================
+
+[CHECK] Python...
+Python 3.14.6
+
+[CHECK] OpenSSL...
+OpenSSL 4.0.2 25 Aug 2026 (Library: OpenSSL 4.0.2 25 Aug 2026)
+
+[CLEAN] Removing previous test output...
+
+============================================================
+CASE 1: GENERATE
+============================================================
+
+[RUN] Generate Root + IMI + Device...
+[OPENSSL] OpenSSL 4.0.2 25 Aug 2026 (Library: OpenSSL 4.0.2 25 Aug 2026)
+
+========================================
+ GENERATE NEW CERTIFICATE SET
+========================================
+
+[CMD]
+"C:\Program Files\OpenSSL-Win64\bin\openssl.exe" ecparam -name prime256v1 -genkey -noout -out test_output\generate\root\root.key
+
+[CMD]
+"C:\Program Files\OpenSSL-Win64\bin\openssl.exe" req -new -x509 -sha256 -key test_output\generate\root\root.key -out test_output\generate\root\root.crt -days 3650 -subj "{'C': 'VN', 'O': 'MyCompany', 'OU': 'PKI', 'CN': 'MyCompany Root CA'}" -addext basicConstraints=critical,CA:true,pathlen:1 -addext keyUsage=critical,keyCertSign,cRLSign -addext subjectKeyIdentifier=hash
+
+[OPENSSL ERROR]
+req: subject name is expected to be in the format /type0=value0/type1=value1/type2=... where characters may be escaped by \. This name is not in that format: '{'C': 'VN', 'O': 'MyCompany', 'OU': 'PKI', 'CN': 'MyCompany Root CA'}'
+
+
+[FAILED] CASE 1 - GENERATE
+Press any key to continue . . . 
+Terminate batch job (Y/N)? 

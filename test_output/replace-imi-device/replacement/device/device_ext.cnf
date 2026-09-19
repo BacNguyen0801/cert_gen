@@ -1,0 +1,8 @@
+[v3_device]
+basicConstraints = critical,CA:false
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid,issuer
+keyUsage = critical,digitalSignature
+extendedKeyUsage = clientAuth
+1.2.3.4.1.1 = ASN1:UTF8String:DEVICE-000001
+1.2.3.4.1.2 = ASN1:UTF8String:VIN123456789
